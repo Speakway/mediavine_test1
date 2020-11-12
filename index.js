@@ -8,6 +8,7 @@ const fs = require('fs').promises;
 let tournamentData = [];
 const MATCH_WIN_POINTS = 3;
 const MATCH_TIE_POINTS = 1;
+const MATCH_LOSS_POINTS = 0;
 
 async function calculateTournamentResults(){
 
@@ -117,23 +118,24 @@ function processMatchResults(scoreData){
             return;
         }
 
-
         //console.log("Team 1: " + team1Name + " Score: " + team1Score);
         //console.log("Team 2: " + team2Name + " Score: " + team2Score);
 
-        //Initialize tournament points (the assign function will skip if not needed)
-        validateTournamentTeams(team1Name,team2Name);
-        
         //Who won the match? Assign tournament points
         if(team1Score > team2Score){
+            //Team 1 is winner, Team 2 is loser
             assignTournamentPoints(team1Name,MATCH_WIN_POINTS);
+            assignTournamentPoints(team2Name,MATCH_LOSS_POINTS);
         }
 
         if(team2Score > team1Score){
+            //Team 2 is winner, Team 1 is loser
             assignTournamentPoints(team2Name,MATCH_WIN_POINTS);
+            assignTournamentPoints(team1Name,MATCH_LOSS_POINTS);
         }
 
         if(team1Score === team2Score){
+            //Both teams tied
             assignTournamentPoints(team1Name,MATCH_TIE_POINTS);
             assignTournamentPoints(team2Name,MATCH_TIE_POINTS);
         }
@@ -157,12 +159,6 @@ function assignTournamentPoints(teamName, points){
         tournamentData[teamIndex].points += points;
     }
        
-}
-
-function validateTournamentTeams(team1Name, team2Name){
-    //Each team starts with 0 points
-    assignTournamentPoints(team1Name,0);
-    assignTournamentPoints(team2Name,0);
 }
 
 function sortTournamentScores(scoreSet){
@@ -192,7 +188,7 @@ function outputTournamentResults(tournamentData){
         //Increment the displayed rank
         let displayRank = rankCounter + 1;
 
-        //Do we have the same points as the last team displayed? If so, the displayed rank stays the same
+        //Do we have the same points as the last team displayed? If so, the displayed rank stays the same, if the rank is 2
         if(teamInfo.points == lastPoints){
             displayRank = lastRank;
         }
