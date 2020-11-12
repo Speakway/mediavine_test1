@@ -14,7 +14,10 @@ If teams tie in the overall tournament points, they each will have the same rank
 
 To run the program, type:
 node index.js *datafilename*
+
 ex: 
+
 "node index.js 2015-Matches.txt"
+
 
 A data file is included from last season, 2015-Matches.txt
