@@ -7,12 +7,15 @@ This small program takes one command line argument: a data file containing the m
 
 It will calculate the number of points for each team based on each match's result over the course of the tournament
 
-The number of points awarded for wins, losses, and ties are modifiable via the MATCH_WIN_POINTS, MATCH_LOSS_POINTS and MATCH_TIE_POINTS constants
+The number of points awarded for wins, losses, and ties are modifiable via the MATCH_WIN_POINTS, MATCH_LOSS_POINTS and MATCH_TIE_POINTS constants.
+
 Currently, these are set to 3 points per win, and 1 point for a tie
+
 
 If teams tie in the overall tournament points, they each will have the same rank
 
-To run the program, type:
+**To run the program, type:**
+
 node index.js *datafilename*
 
 ex: 
