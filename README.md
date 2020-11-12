@@ -1,4 +1,4 @@
-# mediavine_test1
+# Mediavine Soccer Tournament Code Challenge
 Author: Dave Young  dave@rev4media.com
 This small program takes one command line argument: a data file containing the match results for soccer tournaments
 
